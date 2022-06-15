@@ -1,6 +1,7 @@
 import os
 import time
 import random
+from collections import Counter
 def LimparTela():
     os.system("cls")
 def tempo():
@@ -41,7 +42,7 @@ while acertou == False:
     if tentativas == 0:
         print("O desafiante ganhou")
         desafiante = ("Desafiante Ganhou")
-        arquivo = open("banco.txt", "w")
+        arquivo = open("banco.txt", "a")
         arquivo.write(Nomeb1)
         arquivo.write(Nomeb2)
         arquivo.write(QualPalavra)
@@ -59,7 +60,6 @@ while acertou == False:
             if letra == palavra[i]:
                 letrasDescobertas[i] = letra
             print (letrasDescobertas[i])
-
         acertou = True
         for x in range(0, len(letrasDescobertas)):
             if letrasDescobertas[x] == "*":

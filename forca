@@ -1,0 +1,102 @@
+import os
+import time
+import random
+def LimparTela():
+    os.system("cls")
+def tempo():
+    time.sleep(3)
+Nome1 = input("Informe o nome do desafiante: ")
+Nome2 = input("Informe o nome do competidor: ")
+Nomeb1 = "Nome do desafiante: "
+Nomeb1 = Nomeb1 + Nome1 + "\n"
+Nomeb2 = ("Nome do Competidor: ")
+Nomeb2 = Nomeb2 + Nome2 + "\n"
+
+tentativas = 6
+cont = 0
+LimparTela()
+palavra = str(input("insira a palavra: "))
+QualPalavra = ("A palavra era: ")
+QualPalavra = QualPalavra + palavra + "\n"
+lista = (len(palavra))
+letrasDescobertas = []
+for i in range(0, len(palavra)):
+    letrasDescobertas.append("*")
+acertou = False
+Dica1 = input("Insira a dica 1: ")
+Dica2 = input("Insira a dica 2: ")
+Dica3 = input("Insira a dica 3: ")
+LimparTela()
+while acertou == False:
+    cont = cont + 1
+    if cont > 0:
+        tempo()
+        LimparTela()
+    errei = (input("Seja sincero, você errou a tentativa diga (Sim) ou (Não)"))
+    if errei == ("Sim"):
+        tentativas = tentativas - 1
+    else:
+        tentativas = tentativas + 0
+    print ("total de tentativas:",tentativas)
+    if tentativas == 0:
+        print("O desafiante ganhou")
+        desafiante = ("Desafiante Ganhou")
+        arquivo = open("banco.txt", "w")
+        arquivo.write(Nomeb1)
+        arquivo.write(Nomeb2)
+        arquivo.write(QualPalavra)
+        arquivo.write(desafiante)
+        arquivo.close()
+        break
+    print ("(0) Jogar")
+    print ("(1) Solicitar Dica")
+    quero = int(input())
+    LimparTela()
+    if quero == 0:
+        cont = cont + 1
+        letra = str(input("Digite a letra: "))
+        for i in range (0, len(palavra)):
+            if letra == palavra[i]:
+                letrasDescobertas[i] = letra
+            print (letrasDescobertas[i])
+
+        acertou = True
+        for x in range(0, len(letrasDescobertas)):
+            if letrasDescobertas[x] == "*":
+                acertou = False
+    elif quero == 1:
+        print ("(1) Dica 1")
+        print ("(2) Dica 2")
+        print ("(3) Dica 3")
+        dicas = int(input(""))
+        LimparTela()
+        if dicas == 1:
+            print (Dica1)
+            tempo()
+            LimparTela()
+        elif dicas == 2:
+            print(Dica2)
+            tempo()
+            LimparTela()
+        elif dicas == 3:
+            print (Dica3)
+            tempo()
+            LimparTela()
+        else:
+            print ("Numero invalido")
+            tempo()
+            LimparTela()
+    else:
+        print("Caractere ou numero Invalido")
+        tempo()
+        LimparTela()
+if acertou == True:
+    LimparTela()
+    print("Competidor Ganhou!!!")
+    Competidor = ("Competidor ganhou")
+    arquivo = open("banco.txt", "w")
+    arquivo.write(Nomeb1)
+    arquivo.write(Nomeb2)
+    arquivo.write(QualPalavra)
+    arquivo.write(Competidor)
+    arquivo.close()
